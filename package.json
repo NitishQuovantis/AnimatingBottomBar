@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NitishQuovantis/SvgAnimatingBottomBar.git"
+  },
   "keywords": [
     "react-native",
     "bottom",
@@ -21,5 +25,9 @@
   "license": "ISC",
   "devDependencies": {
     "metro-react-native-babel-preset": "^0.60.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/NitishQuovantis/SvgAnimatingBottomBar/issues"
+  },
+  "homepage": "https://github.com/NitishQuovantis/SvgAnimatingBottomBar#readme"
 }
