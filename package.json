@@ -1,0 +1,25 @@
+{
+  "name": "react-native-animating-bottom-tab-bar",
+  "version": "1.0.0",
+  "description": "Animating svg animation on tabswitch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "bottom",
+    "bar",
+    "animating",
+    "bottom",
+    "bar",
+    "custom",
+    "bottom",
+    "bar"
+  ],
+  "author": "Nitish Prasad",
+  "license": "ISC",
+  "devDependencies": {
+    "metro-react-native-babel-preset": "^0.60.0"
+  }
+}
