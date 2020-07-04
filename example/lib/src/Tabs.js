@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import {Animated} from 'react-native';
 
+import {TabConfigurationObject} from './DefaultConfiguration';
 import Styles from './Styles';
 
 class Tabs extends Component {
   constructor(props) {
     super(props);
+
+    this.configurationObject = {...TabConfigurationObject, ...props};
 
     this.state = {
       animated: new Animated.Value(this.props.isSelected),
@@ -22,8 +25,6 @@ class Tabs extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.isSelected !== this.props.isSelected) {
-      console.log(this.props.title, this.props.isSelected);
-
       if (this.props.isSelected) {
         this.runAnimation(1);
       } else {
@@ -35,7 +36,7 @@ class Tabs extends Component {
   getContainerAnimatingStyle = () => {
     const translation = this.state.animated.interpolate({
       inputRange: [0, 1],
-      outputRange: [0, -30],
+      outputRange: [0, -this.configurationObject.yTranslation],
     });
 
     return {
@@ -44,13 +45,17 @@ class Tabs extends Component {
   };
 
   getImageStyle = () => {
+    const {isSelected} = this.props;
+    const {inactiveTintColor, activeTintColor} = this.configurationObject;
+
     const scaleInterpolation = this.state.animated.interpolate({
       inputRange: [0, 1],
-      outputRange: [1, 1],
+      outputRange: [1, this.configurationObject.activeIconScale],
     });
 
     return {
       transform: [{scale: scaleInterpolation}],
+      tintColor: isSelected ? activeTintColor : inactiveTintColor,
     };
   };
 
@@ -62,27 +67,24 @@ class Tabs extends Component {
 
     return {
       transform: [{scaleY: scaleInterpolation}],
+      marginTop: this.configurationObject.extraMarginBetweenTabIconAndLabel,
     };
   };
 
   getAnimatingCircleStyle = () => {
-    const {animated} = this.state;
-
-    const backgroundColorInterpolation = animated.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['#ffff', '#ffff'],
-    });
-
     return {
-      backgroundColor: backgroundColorInterpolation,
-      padding: 10,
-      borderRadius: 22,
+      backgroundColor: this.configurationObject.backgroundColor,
+      borderRadius: this.configurationObject.tabCircleDiameter / 2,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: this.configurationObject.tabCircleDiameter,
+      height: this.configurationObject.tabCircleDiameter,
     };
   };
 
   render() {
-    const {title, icon} = this.props;
-    const {selected} = icon;
+    const {label, icons} = this.props;
+    const {selected} = icons;
 
     const containerStyle = this.getContainerAnimatingStyle();
     const imageStyle = this.getImageStyle();
@@ -90,12 +92,7 @@ class Tabs extends Component {
     const animatingCircleStyle = this.getAnimatingCircleStyle();
 
     return (
-      <Animated.View
-        style={[
-          Styles.tabStyle,
-          containerStyle,
-          // {backgroundColor: this.props.backgroundColor},
-        ]}>
+      <Animated.View style={[Styles.tabStyle, containerStyle]}>
         <Animated.View style={animatingCircleStyle}>
           <Animated.Image
             source={selected}
@@ -105,7 +102,7 @@ class Tabs extends Component {
         </Animated.View>
 
         <Animated.Text style={[Styles.tabTitleStyle, testStyle]}>
-          {title}
+          {label}
         </Animated.Text>
       </Animated.View>
     );

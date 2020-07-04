@@ -11,11 +11,25 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  svgContainerStyle: {
+    width: '100%',
+    justifyContent: 'flex-end',
+  },
+
   tabBarStyle: {
     justifyContent: 'space-around',
     flexDirection: 'row',
     alignItems: 'center',
     height: '100%',
+  },
+
+  tabsContainerStyle: {
+    marginBottom: 0,
+    flexDirection: 'row',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
 
   tabStyle: {
@@ -32,7 +46,6 @@ const Styles = StyleSheet.create({
   },
 
   tabTitleStyle: {
-    marginTop: 5,
     fontSize: 12,
   },
 });

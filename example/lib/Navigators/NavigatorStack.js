@@ -5,11 +5,16 @@ import SvgAnimatingBottomBar from '../src';
 export function getSvgAnimatingBottomBarStack(
   navigationScreens,
   navigationParameter,
+  configData,
 ) {
   const navigatorStack = createBottomTabNavigator(navigationScreens, {
     tabBarComponent: (props) => {
       return (
-        <SvgAnimatingBottomBar {...props} routeData={navigationParameter} />
+        <SvgAnimatingBottomBar
+          {...props}
+          {...configData}
+          routeData={navigationParameter}
+        />
       );
     },
 

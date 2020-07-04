@@ -1,17 +1,22 @@
-import React, { Component } from "react";
-import { View, TouchableOpacity, Dimensions, Animated } from "react-native";
-import Svg, { Path } from "react-native-svg";
-import Styles from "./Styles";
-import Tabs from "./Tabs";
+import React, {Component} from 'react';
+import {View, TouchableOpacity, Dimensions, Animated} from 'react-native';
+import Svg, {Path} from 'react-native-svg';
+import Styles from './Styles';
+import Tabs from './Tabs';
+import {BottomBarDefaultConfigurationObject} from './DefaultConfiguration';
 
-const { width } = Dimensions.get("screen");
-const BottomBarHeight = 100;
+const {width} = Dimensions.get('screen');
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
-class AnimatingBottomBar2 extends Component {
+class SvgAnimatingBottomBar extends Component {
   constructor(props) {
     super(props);
+
+    this.configurationObject = {
+      ...BottomBarDefaultConfigurationObject,
+      ...props.bottomBarConfig,
+    };
 
     this.state = {
       selectedIndex: 1,
@@ -22,7 +27,7 @@ class AnimatingBottomBar2 extends Component {
   runSvgAnimation = (toValue) => {
     Animated.timing(this.state.curveAnimated, {
       toValue,
-      duration: 400,
+      duration: this.configurationObject.animationDuration,
       useNativeDriver: true,
     }).start();
   };
@@ -30,24 +35,30 @@ class AnimatingBottomBar2 extends Component {
   componentDidUpdate(prevProps) {
     const {
       navigation: {
-        state: { index: currentIndex },
+        state: {index: currentIndex},
       },
     } = this.props;
 
     const {
       navigation: {
-        state: { index: previousIndex },
+        state: {index: previousIndex},
       },
     } = prevProps;
 
     if (previousIndex !== currentIndex) {
       this.runSvgAnimation(currentIndex + 1);
+
+      if (this.configurationObject.onTabBarChange) {
+        this.configurationObject.onTabBarChange(
+          this.props.routeData[currentIndex],
+        );
+      }
     }
   }
 
   getBottomBarStyle = () => {
     return {
-      height: BottomBarHeight,
+      height: this.configurationObject.height,
     };
   };
 
@@ -65,27 +76,24 @@ class AnimatingBottomBar2 extends Component {
 
     return {
       width: 2 * width,
-      height: BottomBarHeight + 10,
-      alignItems: "flex-end",
-      justifyContent: "flex-end",
-      alignContent: "flex-end",
-      transform: [{ translateX: translationInterpolation }],
+      height: this.configurationObject.height + 10,
+      alignItems: 'flex-end',
+      justifyContent: 'flex-end',
+      alignContent: 'flex-end',
+      transform: [{translateX: translationInterpolation}],
     };
   };
 
   getBezierCurve = () => {
     const noOfTabsVisible = this.getNoOfTabs();
     const w = width / noOfTabsVisible; // keeping variable name short because it will be used multiple times
-    const wh = w / 2;
-    const h = BottomBarHeight;
-    const b = h * 0.4;
+    const h = this.configurationObject.height;
+    const b = this.configurationObject.curveDepth;
 
-    const delta = (w - 44) / 2;
+    // const curveWidth = 84;
+    const cw = this.configurationObject.curveWidth; //alias
 
-    const curveWidth = 74;
-    const cw = curveWidth; //alias
-
-    const marginBetweenCurveStartAndTabStart = w - curveWidth;
+    const marginBetweenCurveStartAndTabStart = w - cw;
     const mh = marginBetweenCurveStartAndTabStart / 2;
 
     // cubic curve command :-  c dx1 dy1, dx2 dy2, dx dy
@@ -108,7 +116,7 @@ class AnimatingBottomBar2 extends Component {
   };
 
   render() {
-    const { routeData } = this.props;
+    const {routeData} = this.props;
 
     const animatedBottomBarStyle = this.getBottomBarStyle();
     const svgStyle = this.getCurveAnimatedStyle();
@@ -116,7 +124,7 @@ class AnimatingBottomBar2 extends Component {
 
     const {
       navigation: {
-        state: { index: currentIndex },
+        state: {index: currentIndex},
       },
     } = this.props;
 
@@ -125,17 +133,14 @@ class AnimatingBottomBar2 extends Component {
         {/* This is basically our area of showing overflow menu. One of the main reason for implementing Custom Bottom Bar */}
 
         <View
-          style={[Styles.emptyBoxStyle, { bottom: 0 }]}
-          pointerEvents="box-none"
-        >
-          <Animated.View
-            style={{
-              width: "100%",
-              justifyContent: "flex-end",
-            }}
-          >
+          style={[Styles.emptyBoxStyle, {bottom: 0}]}
+          pointerEvents="box-none">
+          <Animated.View style={Styles.svgContainerStyle}>
             <AnimatedSvg style={svgStyle}>
-              <Path d={curvePath} fill="white" />
+              <Path
+                d={curvePath}
+                fill={this.configurationObject.backgroundColor}
+              />
             </AnimatedSvg>
           </Animated.View>
         </View>
@@ -143,30 +148,29 @@ class AnimatingBottomBar2 extends Component {
         <View
           style={[
             animatedBottomBarStyle,
+            Styles.tabsContainerStyle,
             {
-              marginBottom: 0,
-              flexDirection: "row",
-              position: "absolute",
-              left: 0,
-              right: 0,
-              bottom: 0,
-              height: BottomBarHeight,
+              bottom: this.configurationObject.bottom,
+              height: this.configurationObject.height,
             },
-          ]}
-        >
+          ]}>
           {routeData.map((item, index) => {
             return (
               <TouchableOpacity
-                key={item.routeName}
+                key={item.label}
                 style={Styles.tabStyle}
                 onPress={() => {
                   this.props.navigation.navigate(item.routeName);
-                }}
-              >
+                }}>
                 <Tabs
-                  title={item.label}
-                  icon={item.icons}
-                  isSelected={currentIndex == index}
+                  {...item}
+                  isSelected={currentIndex === index}
+                  // Common for all tabs props
+                  tabCircleDiameter={this.configurationObject.tabCircleDiameter}
+                  backgroundColor={this.configurationObject.backgroundColor}
+                  extraMarginBetweenTabIconAndLabel={
+                    this.configurationObject.extraMarginBetweenTabIconAndLabel
+                  }
                 />
               </TouchableOpacity>
             );
@@ -177,4 +181,4 @@ class AnimatingBottomBar2 extends Component {
   }
 }
 
-export default AnimatingBottomBar2;
+export default SvgAnimatingBottomBar;
