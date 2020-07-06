@@ -1,5 +1,8 @@
 # SvgAnimatingBottomBar
 
+![](example/gifs/bottombar.gif)
+
+
 This library is designed to be fully compatible with popular react-navigation library and can be attached to ```tabBarComponent``` prop provided by BottomBarNavigation 
 This library uses ```SVG``` and ```D3``` library to render beautiful animating path and support all the customization options you may require to best fit it for your use-case.
 
