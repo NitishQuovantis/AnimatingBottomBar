@@ -112,7 +112,7 @@ const NavigationParameter = [
 Property | Description | Default
 | --- | --- | --- |
 label             | Title of the tabbar                 | empty
-icon              | Object of active and inactive icons | {selected: null, unselected: null}
+icons             | Object of active and inactive icons | {selected: null, unselected: null}
 route             | Route to navigate to                | null
 activeTintColor   | Tint color when tab is selected     | null
 inactiveTintColor | Tint color when tab is not selected | null
