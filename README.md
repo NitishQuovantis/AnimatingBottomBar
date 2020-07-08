@@ -1,4 +1,4 @@
-# SvgAnimatingBottomBar
+# Animating Bottom Bar
 
 ![](example/gifs/bottombar.gif)
 
