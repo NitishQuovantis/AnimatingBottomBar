@@ -18,7 +18,7 @@ class Tabs extends Component {
   runAnimation = (toValue) => {
     Animated.timing(this.state.animated, {
       toValue,
-      duration: 350,
+      duration: this.configurationObject.animationDuration,
       useNativeDriver: false,
     }).start();
   };
@@ -83,8 +83,8 @@ class Tabs extends Component {
   };
 
   render() {
-    const {label, icons} = this.props;
-    const {selected} = icons;
+    const {label, icons, isSelected} = this.props;
+    const {selected, unselected} = icons;
 
     const containerStyle = this.getContainerAnimatingStyle();
     const imageStyle = this.getImageStyle();
@@ -95,7 +95,7 @@ class Tabs extends Component {
       <Animated.View style={[Styles.tabStyle, containerStyle]}>
         <Animated.View style={animatingCircleStyle}>
           <Animated.Image
-            source={selected}
+            source={isSelected ? selected : unselected}
             resizeMode="contain"
             style={[Styles.tabIconStyle, imageStyle]}
           />

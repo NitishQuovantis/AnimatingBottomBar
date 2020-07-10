@@ -3,18 +3,18 @@ export const TabBarIcons = {
     unselected: require('../../assets/home.png'),
     selected: require('../../assets/home-selected.png'),
   },
-  HealthCard: {
-    unselected: require('../../assets/health.png'),
-    selected: require('../../assets/health-selected.png'),
+  Message: {
+    unselected: require('../../assets/mail.png'),
+    selected: require('../../assets/mail-selected.png'),
   },
 
-  Conversation: {
-    unselected: require('../../assets/conversations.png'),
-    selected: require('../../assets/conversation_logo.png'),
+  Setting: {
+    unselected: require('../../assets/settings.png'),
+    selected: require('../../assets/settings-selected.png'),
   },
 
-  Timeline: {
-    unselected: require('../../assets/timeline.png'),
-    selected: require('../../assets/timeline-selected.png'),
+  Profile: {
+    unselected: require('../../assets/user.png'),
+    selected: require('../../assets/user-selected.png'),
   },
 };

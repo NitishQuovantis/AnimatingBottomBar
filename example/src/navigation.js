@@ -5,13 +5,17 @@ import {
   bottomBarConfig,
 } from './NavigationConfiguration';
 
-// import {getSvgAnimatingBottomBarStack} from '../lib/Navigators/NavigatorStack';
-import {getSvgAnimatingBottomBarStack} from 'react-native-animating-bottom-tab-bar';
+import {
+  getSvgAnimatingBottomBarStack,
+  getExpandingLabelBottomBar,
+} from '../lib/Navigators/NavigatorStack';
 
-const BottomBarStack = getSvgAnimatingBottomBarStack(
+// import {getSvgAnimatingBottomBarStack} from 'react-native-animating-bottom-tab-bar';
+
+const BottomBarStack = getExpandingLabelBottomBar(
   NavigationScreens,
   NavigationParameter,
-  {bottomBarConfig},
+  // {bottomBarConfig},
 );
 
 const AppContainer = createAppContainer(BottomBarStack);

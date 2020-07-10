@@ -27,20 +27,20 @@ const NavigationParameter = [
   {
     label: RouteName.Chat,
     routeName: RouteName.Chat,
-    icons: TabBarIcons.Conversation,
+    icons: TabBarIcons.Message,
     yTranslation: 28,
   },
 
   {
     label: RouteName.Setting,
     routeName: RouteName.Setting,
-    icons: TabBarIcons.HealthCard,
+    icons: TabBarIcons.Setting,
   },
 
   {
     label: RouteName.Profile,
     routeName: RouteName.Profile,
-    icons: TabBarIcons.Timeline,
+    icons: TabBarIcons.Profile,
   },
 ];
 
@@ -60,7 +60,7 @@ const bottomBarConfig = {
   onTabBarChange: null, // function which will be called when tab is switched with tab object as parameter
   animationDuration: 400,
   tabCircleDiameter: 44,
-  extraMarginBetweenTabIconAndLabel: -5,
+  extraMarginBetweenTabIconAndLabel: 0,
 };
 
 export {NavigationParameter, NavigationScreens, bottomBarConfig};

@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {View, TouchableOpacity, Dimensions, Animated} from 'react-native';
-import Svg, {Path} from 'react-native-svg';
-import Styles from './Styles';
-import Tabs from './Tabs';
-import {BottomBarDefaultConfigurationObject} from './DefaultConfiguration';
+import React, { Component } from "react";
+import { View, TouchableOpacity, Dimensions, Animated } from "react-native";
+import Svg, { Path } from "react-native-svg";
+import Styles from "./Styles";
+import Tabs from "./Tabs";
+import { BottomBarDefaultConfigurationObject } from "./DefaultConfiguration";
 
-const {width} = Dimensions.get('screen');
+const { width } = Dimensions.get("screen");
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
@@ -35,13 +35,13 @@ class SvgAnimatingBottomBar extends Component {
   componentDidUpdate(prevProps) {
     const {
       navigation: {
-        state: {index: currentIndex},
+        state: { index: currentIndex },
       },
     } = this.props;
 
     const {
       navigation: {
-        state: {index: previousIndex},
+        state: { index: previousIndex },
       },
     } = prevProps;
 
@@ -50,7 +50,7 @@ class SvgAnimatingBottomBar extends Component {
 
       if (this.configurationObject.onTabBarChange) {
         this.configurationObject.onTabBarChange(
-          this.props.routeData[currentIndex],
+          this.props.routeData[currentIndex]
         );
       }
     }
@@ -77,10 +77,10 @@ class SvgAnimatingBottomBar extends Component {
     return {
       width: 2 * width,
       height: this.configurationObject.height + 10,
-      alignItems: 'flex-end',
-      justifyContent: 'flex-end',
-      alignContent: 'flex-end',
-      transform: [{translateX: translationInterpolation}],
+      alignItems: "flex-end",
+      justifyContent: "flex-end",
+      alignContent: "flex-end",
+      transform: [{ translateX: translationInterpolation }],
     };
   };
 
@@ -116,7 +116,7 @@ class SvgAnimatingBottomBar extends Component {
   };
 
   render() {
-    const {routeData} = this.props;
+    const { routeData } = this.props;
 
     const animatedBottomBarStyle = this.getBottomBarStyle();
     const svgStyle = this.getCurveAnimatedStyle();
@@ -124,7 +124,7 @@ class SvgAnimatingBottomBar extends Component {
 
     const {
       navigation: {
-        state: {index: currentIndex},
+        state: { index: currentIndex },
       },
     } = this.props;
 
@@ -133,8 +133,9 @@ class SvgAnimatingBottomBar extends Component {
         {/* This is basically our area of showing overflow menu. One of the main reason for implementing Custom Bottom Bar */}
 
         <View
-          style={[Styles.emptyBoxStyle, {bottom: 0}]}
-          pointerEvents="box-none">
+          style={[Styles.emptyBoxStyle, { bottom: 0 }]}
+          pointerEvents="box-none"
+        >
           <Animated.View style={Styles.svgContainerStyle}>
             <AnimatedSvg style={svgStyle}>
               <Path
@@ -153,7 +154,8 @@ class SvgAnimatingBottomBar extends Component {
               bottom: this.configurationObject.bottom,
               height: this.configurationObject.height,
             },
-          ]}>
+          ]}
+        >
           {routeData.map((item, index) => {
             return (
               <TouchableOpacity
@@ -161,7 +163,8 @@ class SvgAnimatingBottomBar extends Component {
                 style={Styles.tabStyle}
                 onPress={() => {
                   this.props.navigation.navigate(item.routeName);
-                }}>
+                }}
+              >
                 <Tabs
                   {...item}
                   isSelected={currentIndex === index}

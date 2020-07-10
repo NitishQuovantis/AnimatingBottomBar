@@ -130,8 +130,6 @@ class SvgAnimatingBottomBar extends Component {
 
     return (
       <View>
-        {/* This is basically our area of showing overflow menu. One of the main reason for implementing Custom Bottom Bar */}
-
         <View
           style={[Styles.emptyBoxStyle, {bottom: 0}]}
           pointerEvents="box-none">
@@ -171,6 +169,7 @@ class SvgAnimatingBottomBar extends Component {
                   extraMarginBetweenTabIconAndLabel={
                     this.configurationObject.extraMarginBetweenTabIconAndLabel
                   }
+                  animationDuration={this.configurationObject.animationDuration}
                 />
               </TouchableOpacity>
             );
