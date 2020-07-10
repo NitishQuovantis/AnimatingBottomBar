@@ -3,6 +3,7 @@ import {Animated} from 'react-native';
 
 import {TabConfigurationObject} from './DefaultConfiguration';
 import Styles from './Styles';
+import LottieView from 'lottie-react-native';
 
 class Tabs extends Component {
   constructor(props) {
@@ -56,6 +57,7 @@ class Tabs extends Component {
     return {
       transform: [{scale: scaleInterpolation}],
       tintColor: isSelected ? activeTintColor : inactiveTintColor,
+      alignSelf: 'center',
     };
   };
 
@@ -85,6 +87,8 @@ class Tabs extends Component {
   render() {
     const {label, icons, isSelected} = this.props;
     const {selected, unselected} = icons;
+    const {animated} = this.state;
+    const {isLottieTab, lottieSource, iconSize} = this.configurationObject;
 
     const containerStyle = this.getContainerAnimatingStyle();
     const imageStyle = this.getImageStyle();
@@ -94,11 +98,19 @@ class Tabs extends Component {
     return (
       <Animated.View style={[Styles.tabStyle, containerStyle]}>
         <Animated.View style={animatingCircleStyle}>
-          <Animated.Image
-            source={isSelected ? selected : unselected}
-            resizeMode="contain"
-            style={[Styles.tabIconStyle, imageStyle]}
-          />
+          {isLottieTab ? (
+            <LottieView
+              source={lottieSource}
+              style={{width: iconSize, height: iconSize}}
+              progress={animated}
+            />
+          ) : (
+            <Animated.Image
+              source={isSelected ? selected : unselected}
+              resizeMode="contain"
+              style={[{width: iconSize, height: iconSize}, imageStyle]}
+            />
+          )}
         </Animated.View>
 
         <Animated.Text style={[Styles.tabTitleStyle, testStyle]}>

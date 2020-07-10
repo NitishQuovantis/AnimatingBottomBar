@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Animated} from 'react-native';
 import Styles from './styles';
 import {TabConfigurationObject} from './DefaultConfiguration';
+import LottieView from 'lottie-react-native';
 
 export default class Tab extends Component {
   constructor(props) {
@@ -119,8 +120,8 @@ export default class Tab extends Component {
   render() {
     const {label, icons, isSelected} = this.props;
     const {selected, unselected} = icons;
-    const {hasTextWidth} = this.state;
-    const {iconSize} = this.configurationObject;
+    const {hasTextWidth, animated} = this.state;
+    const {iconSize, isLottieTab, lottieSource} = this.configurationObject;
 
     const containerStyle = this.getContainerStyle();
     const labelStyle = this.getLabelStyle();
@@ -128,11 +129,19 @@ export default class Tab extends Component {
     return (
       <Animated.View style={containerStyle}>
         <Animated.View>
-          <Animated.Image
-            source={isSelected ? selected : unselected}
-            resizeMode="contain"
-            style={{width: iconSize, height: iconSize}}
-          />
+          {isLottieTab ? (
+            <LottieView
+              source={lottieSource}
+              style={{width: iconSize, height: iconSize}}
+              progress={animated}
+            />
+          ) : (
+            <Animated.Image
+              source={isSelected ? selected : unselected}
+              resizeMode="contain"
+              style={{width: iconSize, height: iconSize}}
+            />
+          )}
         </Animated.View>
 
         <Animated.View

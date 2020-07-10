@@ -1,5 +1,6 @@
 import {Home, Chat, Profile, Setting} from './screens';
 import {TabBarIcons} from './utility/ImageConstant';
+import * as Animations from './utility/AnimationConstant';
 
 const RouteName = {
   Home: 'Home',
@@ -22,6 +23,9 @@ const NavigationParameter = [
     icons: TabBarIcons.Home,
     activeIconScale: 1,
     yTranslation: 28,
+
+    lottieSource: Animations.HomeAnimation,
+    isLottieTab: true,
   },
 
   {
@@ -29,18 +33,27 @@ const NavigationParameter = [
     routeName: RouteName.Chat,
     icons: TabBarIcons.Message,
     yTranslation: 28,
+
+    lottieSource: Animations.MessageAnimation,
+    isLottieTab: true,
   },
 
   {
     label: RouteName.Setting,
     routeName: RouteName.Setting,
     icons: TabBarIcons.Setting,
+
+    lottieSource: Animations.SettingAnimation,
+    isLottieTab: true,
   },
 
   {
     label: RouteName.Profile,
     routeName: RouteName.Profile,
     icons: TabBarIcons.Profile,
+
+    lottieSource: Animations.ProfileAnimation,
+    isLottieTab: true,
   },
 ];
 

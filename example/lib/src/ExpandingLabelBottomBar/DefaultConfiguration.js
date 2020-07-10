@@ -5,6 +5,10 @@ export const TabConfigurationObject = {
   icon: {selected: null, unselected: null},
   route: null,
   iconSize: 24,
+
+  // Enabling lottie tab
+  lottieSource: null,
+  isLottieTab: false,
 };
 
 export const BottomBarDefaultConfigurationObject = {
