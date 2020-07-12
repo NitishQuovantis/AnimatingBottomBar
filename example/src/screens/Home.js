@@ -6,7 +6,7 @@ export default class Home extends Component {
   render() {
     return (
       <View style={CommonStyle.screenContainerStyle}>
-        <Text> Home </Text>
+        <Text style={CommonStyle.pageTitle}> Home </Text>
       </View>
     );
   }

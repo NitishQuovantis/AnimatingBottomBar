@@ -6,7 +6,7 @@ export default class Setting extends Component {
   render() {
     return (
       <View style={CommonStyle.screenContainerStyle}>
-        <Text> Setting </Text>
+        <Text style={CommonStyle.pageTitle}> Setting </Text>
       </View>
     );
   }

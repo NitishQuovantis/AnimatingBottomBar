@@ -6,7 +6,7 @@ export default class Chat extends Component {
   render() {
     return (
       <View style={CommonStyle.screenContainerStyle}>
-        <Text> Chat </Text>
+        <Text style={CommonStyle.pageTitle}> Chat </Text>
       </View>
     );
   }

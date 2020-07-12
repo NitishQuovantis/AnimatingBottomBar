@@ -6,7 +6,7 @@ export default class Profile extends Component {
   render() {
     return (
       <View style={CommonStyle.screenContainerStyle}>
-        <Text> Profile </Text>
+        <Text style={CommonStyle.pageTitle}> Profile </Text>
       </View>
     );
   }
