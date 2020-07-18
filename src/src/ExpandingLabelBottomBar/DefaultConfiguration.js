@@ -1,10 +1,14 @@
 export const TabConfigurationObject = {
   activeBGColor: 'gray',
   inactiveBGColor: '#ffff',
+  activeTintColor: null,
+  inactiveTintColor: null,
   label: '',
   icon: {selected: null, unselected: null},
   route: null,
   iconSize: 24,
+  activeTextStyle: null,
+  inactiveTextStyle: null,
 
   // Enabling lottie tab
   lottieSource: null,

@@ -1,3 +1,7 @@
-import { getSvgAnimatingBottomBarStack } from "./src/Navigators/NavigatorStack";
+import {
+  getAnimatingBottomBar,
+  AnimationType,
+} from "./src/Navigators/NavigatorStack";
+import AnimatingBottomBarContext from "./src/Contexts/AnimatingBottomBarContext";
 
-export { getSvgAnimatingBottomBarStack };
+export { getAnimatingBottomBar, AnimationType };

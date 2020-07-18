@@ -28,11 +28,6 @@ export default class Tab extends Component {
   }
 
   startAnimationToValue = (toValue) => {
-    console.log(
-      'aniamtion duration is',
-      this.configurationObject.animationDuration,
-    );
-
     const {animated} = this.state;
     Animated.timing(animated, {
       toValue,
@@ -121,7 +116,15 @@ export default class Tab extends Component {
     const {label, icons, isSelected} = this.props;
     const {selected, unselected} = icons;
     const {hasTextWidth, animated} = this.state;
-    const {iconSize, isLottieTab, lottieSource} = this.configurationObject;
+    const {
+      iconSize,
+      isLottieTab,
+      lottieSource,
+      activeTintColor,
+      inactiveTintColor,
+      activeTextStyle,
+      inactiveTextStyle,
+    } = this.configurationObject;
 
     const containerStyle = this.getContainerStyle();
     const labelStyle = this.getLabelStyle();
@@ -139,7 +142,11 @@ export default class Tab extends Component {
             <Animated.Image
               source={isSelected ? selected : unselected}
               resizeMode="contain"
-              style={{width: iconSize, height: iconSize}}
+              style={{
+                width: iconSize,
+                height: iconSize,
+                tintColor: isSelected ? activeTintColor : inactiveTintColor,
+              }}
             />
           )}
         </Animated.View>
@@ -158,7 +165,11 @@ export default class Tab extends Component {
               });
             }
           }}>
-          <Animated.Text numberOfLines={1}>{label}</Animated.Text>
+          <Animated.Text
+            numberOfLines={1}
+            style={[isSelected ? activeTextStyle : inactiveTextStyle]}>
+            {label}
+          </Animated.Text>
         </Animated.View>
       </Animated.View>
     );

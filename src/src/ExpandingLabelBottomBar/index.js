@@ -31,8 +31,10 @@ export default class ExpandingLabelBottomBar extends Component {
       <View
         style={[
           Styles.containerStyle,
-
-          {height: this.configurationObject.height},
+          {
+            height: this.configurationObject.height,
+            backgroundColor: this.configurationObject.backgroundColor,
+          },
         ]}>
         {routeData.map((tab, index) => {
           return (

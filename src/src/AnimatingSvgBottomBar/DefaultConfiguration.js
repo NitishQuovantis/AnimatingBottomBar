@@ -3,6 +3,8 @@ export const TabConfigurationObject = {
   inactiveTintColor: null,
   activeIconScale: 1,
   yTranslation: 28,
+  activeTextStyle: null,
+  inactiveTextStyle: null,
   label: '',
   icon: {selected: null, unselected: null},
   route: null,

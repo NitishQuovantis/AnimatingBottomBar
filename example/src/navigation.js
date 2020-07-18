@@ -6,24 +6,27 @@ import {
   bottomBarConfig,
   extraTabs,
 } from './NavigationConfiguration';
-import AnimatingBottomBarContext from '../lib/Contexts/AnimatingBottomBarContext';
+import AnimatingBottomBarContext from '../libCode/Contexts/AnimatingBottomBarContext';
+
+// import {
+//   getAnimatingBottomBar,
+//   AnimationType,
+// } from '../libCode/Navigators/NavigatorStack';
 
 import {
-  getSvgAnimatingBottomBarStack,
-  getExpandingLabelBottomBar,
-  getAddExpandingBottomBar,
-} from '../lib/Navigators/NavigatorStack';
+  getAnimatingBottomBar,
+  AnimationType,
+} from 'react-native-animating-bottom-tab-bar';
 
-// import {getSvgAnimatingBottomBarStack} from 'react-native-animating-bottom-tab-bar';
-
-const BottomBarStack = getAddExpandingBottomBar(
-  NavigationScreens,
-  NavigationParameter,
-  {
-    // bottomBarConfig,
-    extraTabs,
+const BottomBarStack = getAnimatingBottomBar({
+  type: AnimationType.ExpandingLabel,
+  navigationScreens: NavigationScreens,
+  navigationParameter: NavigationParameter,
+  configData: {
+    bottomBarConfig,
+    // extraTabs,
   },
-);
+});
 
 const AppContainer = createAppContainer(BottomBarStack);
 
@@ -53,8 +56,6 @@ export default class navigation extends React.Component {
           onNavigationStateChange={(prevState, currentState) => {
             const currentRouteName = this.getActiveRouteName(currentState);
             const previousRouteName = this.getActiveRouteName(prevState);
-
-            console.log('onNavigationStateChanged', currentRouteName);
 
             if (previousRouteName !== currentRouteName) {
               this.setState({routeName: currentRouteName});

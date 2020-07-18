@@ -1,8 +1,53 @@
 import React from 'react'; // if we remove this line, it will cause error
 import {createBottomTabNavigator} from 'react-navigation';
-import SvgAnimatingBottomBar from '../src';
+import SvgAnimatingBottomBar from '../src/AnimatingSvgBottomBar';
+import ExpandingLabelBottomBar from '../src/ExpandingLabelBottomBar';
+import AddExpandingBottomBar from '../src/AddExpandingBottomBar';
 
-export function getSvgAnimatingBottomBarStack(
+export const AnimationType = {
+  SvgBottomBar: 'SvgBottomBar',
+  ExpandingLabel: 'ExpandingLabel',
+  // ContextMenu: 'ContextMenu',
+};
+
+export function getAnimatingBottomBar({
+  type,
+  navigationScreens,
+  navigationParameter,
+  configData,
+}) {
+  switch (type) {
+    case AnimationType.SvgBottomBar:
+      return getSvgAnimatingBottomBarStack(
+        navigationScreens,
+        navigationParameter,
+        configData,
+      );
+
+    case AnimationType.ExpandingLabel:
+      return getExpandingLabelBottomBar(
+        navigationScreens,
+        navigationParameter,
+        configData,
+      );
+
+    // case AnimationType.ContextMenu:
+    //   return getAddExpandingBottomBar(
+    //     navigationScreens,
+    //     navigationParameter,
+    //     configData,
+    //   );
+
+    default:
+      return getSvgAnimatingBottomBarStack(
+        navigationScreens,
+        navigationParameter,
+        configData,
+      );
+  }
+}
+
+function getSvgAnimatingBottomBarStack(
   navigationScreens,
   navigationParameter,
   configData,
@@ -22,4 +67,47 @@ export function getSvgAnimatingBottomBarStack(
   });
 
   return navigatorStack;
+}
+
+function getExpandingLabelBottomBar(
+  navigationScreens,
+  navigationParameter,
+  configData,
+) {
+  const navigatorStack = createBottomTabNavigator(navigationScreens, {
+    tabBarComponent: (props) => {
+      return (
+        <ExpandingLabelBottomBar
+          {...props}
+          {...configData}
+          routeData={navigationParameter}
+        />
+      );
+    },
+
+    backBehavior: 'history',
+  });
+
+  return navigatorStack;
+}
+
+function getAddExpandingBottomBar(
+  navigationScreens,
+  navigationParameter,
+  configData,
+) {
+  const navigationStack = createBottomTabNavigator(navigationScreens, {
+    tabBarComponent: (props) => {
+      return (
+        <AddExpandingBottomBar
+          {...props}
+          {...configData}
+          routeData={navigationParameter}
+        />
+      );
+    },
+    backBehavior: 'history',
+  });
+
+  return navigationStack;
 }

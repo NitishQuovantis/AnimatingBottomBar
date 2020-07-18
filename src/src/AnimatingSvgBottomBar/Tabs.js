@@ -88,7 +88,13 @@ class Tabs extends Component {
     const {label, icons, isSelected} = this.props;
     const {selected, unselected} = icons;
     const {animated} = this.state;
-    const {isLottieTab, lottieSource, iconSize} = this.configurationObject;
+    const {
+      isLottieTab,
+      lottieSource,
+      iconSize,
+      activeTextStyle,
+      inactiveTextStyle,
+    } = this.configurationObject;
 
     const containerStyle = this.getContainerAnimatingStyle();
     const imageStyle = this.getImageStyle();
@@ -113,7 +119,12 @@ class Tabs extends Component {
           )}
         </Animated.View>
 
-        <Animated.Text style={[Styles.tabTitleStyle, testStyle]}>
+        <Animated.Text
+          style={[
+            Styles.tabTitleStyle,
+            testStyle,
+            isSelected ? activeTextStyle : inactiveTextStyle,
+          ]}>
           {label}
         </Animated.Text>
       </Animated.View>

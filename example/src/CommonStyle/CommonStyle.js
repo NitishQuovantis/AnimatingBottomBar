@@ -11,7 +11,7 @@ const CommonStyle = StyleSheet.create({
 
   pageTitle: {
     fontSize: 30,
-    color: 'white',
+    color: 'black',
   },
 });
 

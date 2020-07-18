@@ -5,6 +5,10 @@ export const TabConfigurationObject = {
   icon: {selected: null, unselected: null},
   route: null,
   iconSize: 24,
+  activeTextStyle: null,
+  inactiveTextStyle: null,
+  activeTintColor: null,
+  inactiveTintColor: null,
 
   // Enabling lottie tab
   lottieSource: null,
@@ -12,12 +16,9 @@ export const TabConfigurationObject = {
 };
 
 export const BottomBarDefaultConfigurationObject = {
-  backgroundColor: 'white',
+  backgroundColor: 'pink',
   height: 100,
   animationDuration: 400,
-  labelMarginLeft: 10,
-  containerHorizontalPadding: 15,
-  containerVerticalPadding: 10,
 
   curveWidth: 80,
   curveDepth: 50,
@@ -35,5 +36,5 @@ export const ExtraTabs = {
   centerExpandIcon: null,
   centerCollapseIcon: null,
   spaceBetweenCenterButtonAndTabs: 0,
-  backgroundColor: 'orange',
+  backgroundColor: 'red',
 };

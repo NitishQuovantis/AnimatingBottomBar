@@ -37,9 +37,9 @@ const NavigationParameter = [
     icons: TabBarIcons.Home,
     activeIconScale: 1,
     yTranslation: 28,
-
+    activeTextStyle: {color: 'white', fontWeight: 'bold'},
     lottieSource: Animations.HomeAnimation,
-    isLottieTab: true,
+    // isLottieTab: true,
   },
 
   {
@@ -47,27 +47,27 @@ const NavigationParameter = [
     routeName: RouteName.Chat,
     icons: TabBarIcons.Message,
     yTranslation: 28,
-
+    activeTextStyle: {color: 'white', fontWeight: 'bold'},
     lottieSource: Animations.MessageAnimation,
-    isLottieTab: true,
+    // isLottieTab: true,
   },
 
   {
     label: RouteName.Setting,
     routeName: RouteName.Setting,
     icons: TabBarIcons.Setting,
-
+    activeTextStyle: {color: 'white', fontWeight: 'bold'},
     lottieSource: Animations.SettingAnimation,
-    isLottieTab: true,
+    // isLottieTab: true,
   },
 
   {
     label: RouteName.Profile,
     routeName: RouteName.Profile,
     icons: TabBarIcons.Profile,
-
+    activeTextStyle: {color: 'white', fontWeight: 'bold'},
     lottieSource: Animations.ProfileAnimation,
-    isLottieTab: true,
+    // isLottieTab: true,
   },
 ];
 
@@ -79,12 +79,11 @@ const TabConfigurationObject = {
 };
 
 const bottomBarConfig = {
-  backgroundColor: 'white',
+  backgroundColor: 'pink',
   height: 100,
   bottom: 0,
   curveWidth: 82,
   curveDepth: 43,
-  onTabBarChange: null, // function which will be called when tab is switched with tab object as parameter
   animationDuration: 400,
   tabCircleDiameter: 44,
   extraMarginBetweenTabIconAndLabel: 0,
