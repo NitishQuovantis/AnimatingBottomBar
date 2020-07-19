@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Animated} from 'react-native';
+import React, { Component } from 'react';
+import { Animated } from 'react-native';
 
-import {TabConfigurationObject} from './DefaultConfiguration';
+import { TabConfigurationObject } from './DefaultConfiguration';
 import Styles from './Styles';
 import LottieView from 'lottie-react-native';
 
@@ -9,10 +9,10 @@ class Tabs extends Component {
   constructor(props) {
     super(props);
 
-    this.configurationObject = {...TabConfigurationObject, ...props};
+    this.configurationObject = { ...TabConfigurationObject, ...props };
 
     this.state = {
-      animated: new Animated.Value(this.props.isSelected),
+      animated: new Animated.Value(this.props.isSelected ? 1 : 0),
     };
   }
 
@@ -41,13 +41,13 @@ class Tabs extends Component {
     });
 
     return {
-      transform: [{translateY: translation}],
+      transform: [{ translateY: translation }],
     };
   };
 
   getImageStyle = () => {
-    const {isSelected} = this.props;
-    const {inactiveTintColor, activeTintColor} = this.configurationObject;
+    const { isSelected } = this.props;
+    const { inactiveTintColor, activeTintColor } = this.configurationObject;
 
     const scaleInterpolation = this.state.animated.interpolate({
       inputRange: [0, 1],
@@ -55,7 +55,7 @@ class Tabs extends Component {
     });
 
     return {
-      transform: [{scale: scaleInterpolation}],
+      transform: [{ scale: scaleInterpolation }],
       tintColor: isSelected ? activeTintColor : inactiveTintColor,
       alignSelf: 'center',
     };
@@ -68,7 +68,7 @@ class Tabs extends Component {
     });
 
     return {
-      transform: [{scaleY: scaleInterpolation}],
+      transform: [{ scaleY: scaleInterpolation }],
       marginTop: this.configurationObject.extraMarginBetweenTabIconAndLabel,
     };
   };
@@ -85,9 +85,9 @@ class Tabs extends Component {
   };
 
   render() {
-    const {label, icons, isSelected} = this.props;
-    const {selected, unselected} = icons;
-    const {animated} = this.state;
+    const { label, icons, isSelected } = this.props;
+    const { selected, unselected } = icons;
+    const { animated } = this.state;
     const {
       isLottieTab,
       lottieSource,
@@ -107,14 +107,14 @@ class Tabs extends Component {
           {isLottieTab ? (
             <LottieView
               source={lottieSource}
-              style={{width: iconSize, height: iconSize}}
+              style={{ width: iconSize, height: iconSize }}
               progress={animated}
             />
           ) : (
             <Animated.Image
               source={isSelected ? selected : unselected}
-              resizeMode="contain"
-              style={[{width: iconSize, height: iconSize}, imageStyle]}
+              resizeMode='contain'
+              style={[{ width: iconSize, height: iconSize }, imageStyle]}
             />
           )}
         </Animated.View>
@@ -124,7 +124,8 @@ class Tabs extends Component {
             Styles.tabTitleStyle,
             testStyle,
             isSelected ? activeTextStyle : inactiveTextStyle,
-          ]}>
+          ]}
+        >
           {label}
         </Animated.Text>
       </Animated.View>

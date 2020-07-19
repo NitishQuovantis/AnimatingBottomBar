@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
-import {Animated} from 'react-native';
+import React, { Component } from 'react';
+import { Animated } from 'react-native';
 import Styles from './styles';
-import {TabConfigurationObject} from './DefaultConfiguration';
+import { TabConfigurationObject } from './DefaultConfiguration';
 import LottieView from 'lottie-react-native';
 
 export default class Tab extends Component {
   constructor(props) {
     super(props);
 
-    this.configurationObject = {...TabConfigurationObject, ...props};
+    this.configurationObject = { ...TabConfigurationObject, ...props };
 
     this.state = {
       hasTextWidth: false,
       textWidth: 0,
-      animated: new Animated.Value(this.props.isSelected),
+      animated: new Animated.Value(this.props.isSelected ? 1 : 0),
     };
   }
 
@@ -28,7 +28,7 @@ export default class Tab extends Component {
   }
 
   startAnimationToValue = (toValue) => {
-    const {animated} = this.state;
+    const { animated } = this.state;
     Animated.timing(animated, {
       toValue,
       duration: this.configurationObject.animationDuration,
@@ -37,7 +37,7 @@ export default class Tab extends Component {
   };
 
   getContainerStyle = () => {
-    const {hasTextWidth, animated, textWidth} = this.state;
+    const { hasTextWidth, animated, textWidth } = this.state;
     const {
       containerHorizontalPadding,
       containerVerticalPadding,
@@ -46,7 +46,7 @@ export default class Tab extends Component {
     } = this.configurationObject;
 
     if (!hasTextWidth) {
-      return {opacity: 0, ...Styles.tabContainerStyle};
+      return { opacity: 0, ...Styles.tabContainerStyle };
     }
 
     const backgroundColor = animated.interpolate({
@@ -78,7 +78,7 @@ export default class Tab extends Component {
   };
 
   getLabelStyle = () => {
-    const {hasTextWidth, animated} = this.state;
+    const { hasTextWidth, animated } = this.state;
     const {
       containerHorizontalPadding,
       iconSize,
@@ -86,7 +86,7 @@ export default class Tab extends Component {
     } = this.configurationObject;
 
     if (!hasTextWidth) {
-      return {...Styles.labelStyle, width: null};
+      return { ...Styles.labelStyle, width: null };
     }
 
     const width = animated.interpolate({
@@ -106,16 +106,16 @@ export default class Tab extends Component {
     return {
       ...Styles.labelStyle,
       opacity: opacityInterpolation,
-      transform: [{translateX: width}],
+      transform: [{ translateX: width }],
       overflow: 'hidden',
       zIndex: -10,
     };
   };
 
   render() {
-    const {label, icons, isSelected} = this.props;
-    const {selected, unselected} = icons;
-    const {hasTextWidth, animated} = this.state;
+    const { label, icons, isSelected } = this.props;
+    const { selected, unselected } = icons;
+    const { hasTextWidth, animated } = this.state;
     const {
       iconSize,
       isLottieTab,
@@ -135,13 +135,13 @@ export default class Tab extends Component {
           {isLottieTab ? (
             <LottieView
               source={lottieSource}
-              style={{width: iconSize, height: iconSize}}
+              style={{ width: iconSize, height: iconSize }}
               progress={animated}
             />
           ) : (
             <Animated.Image
               source={isSelected ? selected : unselected}
-              resizeMode="contain"
+              resizeMode='contain'
               style={{
                 width: iconSize,
                 height: iconSize,
@@ -155,7 +155,7 @@ export default class Tab extends Component {
           style={labelStyle}
           onLayout={({
             nativeEvent: {
-              layout: {width},
+              layout: { width },
             },
           }) => {
             if (!hasTextWidth) {
@@ -164,10 +164,12 @@ export default class Tab extends Component {
                 hasTextWidth: true,
               });
             }
-          }}>
+          }}
+        >
           <Animated.Text
             numberOfLines={1}
-            style={[isSelected ? activeTextStyle : inactiveTextStyle]}>
+            style={[isSelected ? activeTextStyle : inactiveTextStyle]}
+          >
             {label}
           </Animated.Text>
         </Animated.View>
