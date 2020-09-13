@@ -1,6 +1,6 @@
 {
   "name": "react-native-animating-bottom-tab-bar",
-  "version": "1.0.5",
+  "version": "1.0.6-4",
   "description": "Animating svg animation on tabswitch",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,8 @@
     "react-native-svg": "*",
     "lottie-react-native": "*",
     "lottie-ios": "*",
-    "react-navigation": "3.*.*"
+    "react-navigation": "4.*.*",
+    "react-navigation-tabs": "*.*.*"
   },
   "keywords": [
     "react-native",

@@ -1,5 +1,5 @@
 import React from 'react'; // if we remove this line, it will cause error
-import {createBottomTabNavigator} from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import SvgAnimatingBottomBar from '../src/AnimatingSvgBottomBar';
 import ExpandingLabelBottomBar from '../src/ExpandingLabelBottomBar';
 import AddExpandingBottomBar from '../src/AddExpandingBottomBar';
@@ -21,28 +21,28 @@ export function getAnimatingBottomBar({
       return getSvgAnimatingBottomBarStack(
         navigationScreens,
         navigationParameter,
-        configData,
+        configData
       );
 
     case AnimationType.ExpandingLabel:
       return getExpandingLabelBottomBar(
         navigationScreens,
         navigationParameter,
-        configData,
+        configData
       );
 
     case AnimationType.ContextMenu:
       return getAddExpandingBottomBar(
         navigationScreens,
         navigationParameter,
-        configData,
+        configData
       );
 
     default:
       return getSvgAnimatingBottomBarStack(
         navigationScreens,
         navigationParameter,
-        configData,
+        configData
       );
   }
 }
@@ -50,7 +50,7 @@ export function getAnimatingBottomBar({
 function getSvgAnimatingBottomBarStack(
   navigationScreens,
   navigationParameter,
-  configData,
+  configData
 ) {
   const initialRouteName = configData.bottomBarConfig.initialRouteName;
 
@@ -75,7 +75,7 @@ function getSvgAnimatingBottomBarStack(
 function getExpandingLabelBottomBar(
   navigationScreens,
   navigationParameter,
-  configData,
+  configData
 ) {
   const initialRouteName = configData.bottomBarConfig.initialRouteName;
 
@@ -100,7 +100,7 @@ function getExpandingLabelBottomBar(
 function getAddExpandingBottomBar(
   navigationScreens,
   navigationParameter,
-  configData,
+  configData
 ) {
   const initialRouteName = configData.bottomBarConfig.initialRouteName;
 

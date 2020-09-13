@@ -7,8 +7,20 @@ This library uses `SVG` and `Lottie` library to render beautiful animation and s
 
 ## Installation
 
+### Current Version: 1.0.6
+
+This library will follow `major.minor.patch-(navigation-version)` synax to support different version of react navigation.
+
+For
+
+React navigation 3 :- `1.0.6-3`
+
+React navigation 4 :- `1.0.6-4`
+
+React navigation 5 :- `To Be Implemented`
+
 ```
-npm i react-native-animating-bottom-tab-bar
+npm i react-native-animating-bottom-tab-bar@version
 ```
 
 Apart from it you also need to install `Svg` and `Lottie` library
