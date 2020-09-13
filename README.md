@@ -1,5 +1,9 @@
 # Animating Bottom Bar
 
+# Upcoming
+
+![Context menu Bottom Bar](example/gifs/ContextMenu.gif)
+
 ![SvgBottomBar](example/gifs/bottombar.gif)
 
 This library is designed to be fully compatible with popular react-navigation library and can be attached to `tabBarComponent` prop provided by BottomBarNavigation
