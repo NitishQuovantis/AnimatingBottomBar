@@ -182,6 +182,7 @@ It only accepts one property `configData`. Various property of `configData` avai
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
 | backgroundColor                   | Background color of the bottom bar and circular selected view in tab                                                                              | white   |
 | height                            | Height of the bottom bar                                                                                                                          | 100     |
+| initialRouteName                  | Initially selected route                                                                                                                          | null    |
 | bottom                            | Bottom padding of the tabbar content. It don't change height of the bottom bar nor it create any distance between bottom of the screen and tabbar | 0       |
 | curveWidth                        | Total width of the curve of the selected tab                                                                                                      | 82      |
 | curveDepth                        | Depth of the curve. Deeper the curve steeper the curve will be                                                                                    | 43      |
@@ -219,6 +220,7 @@ It only accepts one property `configData`. Various property of `configData` avai
 | -------------------------- | -------------------------------------------------------------------- | ------- |
 | backgroundColor            | Background color of the bottom bar and circular selected view in tab | white   |
 | height                     | Height of the bottom bar                                             | 100     |
+| initialRouteName           | Initially selected route                                             | null    |
 | animationDuration          | Animation duration of the slide animation in milliseconds            | 400     |
 | labelMarginLeft            | margin between label and icon                                        | 10      |
 | containerHorizontalPadding | Horizontal padding of the tab container                              | 10      |

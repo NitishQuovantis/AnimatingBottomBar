@@ -19,12 +19,12 @@ import {
 } from 'react-native-animating-bottom-tab-bar';
 
 const BottomBarStack = getAnimatingBottomBar({
-  type: AnimationType.ExpandingLabel,
+  type: AnimationType.SvgBottomBar,
   navigationScreens: NavigationScreens,
   navigationParameter: NavigationParameter,
   configData: {
     bottomBarConfig,
-    // extraTabs,
+    extraTabs,
   },
 });
 

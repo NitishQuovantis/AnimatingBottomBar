@@ -87,6 +87,7 @@ const bottomBarConfig = {
   animationDuration: 400,
   tabCircleDiameter: 44,
   extraMarginBetweenTabIconAndLabel: 0,
+  initialRouteName: RouteName.Profile,
 };
 
 const extraTabs = {

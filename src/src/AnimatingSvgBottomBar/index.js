@@ -18,9 +18,15 @@ class SvgAnimatingBottomBar extends Component {
       ...props.bottomBarConfig,
     };
 
+    const {
+      navigation: {
+        state: {index: currentIndex},
+      },
+    } = props;
+
     this.state = {
-      selectedIndex: 1,
-      curveAnimated: new Animated.Value(1),
+      selectedIndex: currentIndex + 1,
+      curveAnimated: new Animated.Value(currentIndex + 1),
     };
   }
 

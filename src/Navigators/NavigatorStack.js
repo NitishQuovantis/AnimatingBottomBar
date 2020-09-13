@@ -31,12 +31,12 @@ export function getAnimatingBottomBar({
         configData,
       );
 
-    // case AnimationType.ContextMenu:
-    //   return getAddExpandingBottomBar(
-    //     navigationScreens,
-    //     navigationParameter,
-    //     configData,
-    //   );
+    case AnimationType.ContextMenu:
+      return getAddExpandingBottomBar(
+        navigationScreens,
+        navigationParameter,
+        configData,
+      );
 
     default:
       return getSvgAnimatingBottomBarStack(
@@ -52,6 +52,8 @@ function getSvgAnimatingBottomBarStack(
   navigationParameter,
   configData,
 ) {
+  const initialRouteName = configData.bottomBarConfig.initialRouteName;
+
   const navigatorStack = createBottomTabNavigator(navigationScreens, {
     tabBarComponent: (props) => {
       return (
@@ -63,6 +65,7 @@ function getSvgAnimatingBottomBarStack(
       );
     },
 
+    initialRouteName: initialRouteName,
     backBehavior: 'history',
   });
 
@@ -74,6 +77,8 @@ function getExpandingLabelBottomBar(
   navigationParameter,
   configData,
 ) {
+  const initialRouteName = configData.bottomBarConfig.initialRouteName;
+
   const navigatorStack = createBottomTabNavigator(navigationScreens, {
     tabBarComponent: (props) => {
       return (
@@ -85,6 +90,7 @@ function getExpandingLabelBottomBar(
       );
     },
 
+    initialRouteName: initialRouteName,
     backBehavior: 'history',
   });
 
@@ -96,6 +102,8 @@ function getAddExpandingBottomBar(
   navigationParameter,
   configData,
 ) {
+  const initialRouteName = configData.bottomBarConfig.initialRouteName;
+
   const navigationStack = createBottomTabNavigator(navigationScreens, {
     tabBarComponent: (props) => {
       return (
@@ -107,6 +115,7 @@ function getAddExpandingBottomBar(
       );
     },
     backBehavior: 'history',
+    initialRouteName: initialRouteName,
   });
 
   return navigationStack;

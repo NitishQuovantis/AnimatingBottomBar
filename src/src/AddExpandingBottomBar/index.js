@@ -16,11 +16,6 @@ export default class AddExpandingBottomBar extends Component {
       ...BottomBarDefaultConfigurationObject,
       ...props.bottomBarConfig,
     };
-
-    this.state = {
-      selectedIndex: 1,
-      curveAnimated: new Animated.Value(1),
-    };
   }
 
   getPath = () => {
